@@ -76,6 +76,29 @@ module.exports = {
         pathToConfigModule: `src/utils/typography`,
       },
     },
+
+    {
+      resolve: 'gatsby-plugin-i18n',
+      options:{
+        langKeyDefault: 'en',
+        useLangkeyLayout: false,
+        markdownRemark:{
+          postPage: require.resolve('./src/templates/blog-post.js'),
+          query:`{
+            allMarkdownRemark{
+              edges{
+                nodes{
+                  fields{
+                    slug
+                    langKey
+                  }
+                }
+              }
+            }
+          }`,
+        },
+      },
+    }
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
